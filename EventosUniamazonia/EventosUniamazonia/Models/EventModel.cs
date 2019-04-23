@@ -13,6 +13,7 @@ namespace EventosUniamazonia.Models
         public String tema { get; set; }
         public String fecha { get; set; }
         public String fechaFin { get; set; }
+        public String foto { get; set; }
         public EventModel()
         {
         }

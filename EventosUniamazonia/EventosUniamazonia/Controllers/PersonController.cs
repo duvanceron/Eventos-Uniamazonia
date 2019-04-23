@@ -18,6 +18,7 @@ namespace EventosUniamazonia.Controllers
         public DataTable dataMenu;
         public DataTable loginPerson;
         public DataTable data;
+        public int rowAfectadas;
         public PersonController()
         {
             person = new PersonModel();
@@ -27,7 +28,7 @@ namespace EventosUniamazonia.Controllers
             data = new DataTable();
         }
 
-        public String addPerson(int identification, String name1, string name2, String lastName1, String lastname2, String user, String password)
+        public String addPerson(int identification, String name1, string name2, String lastName1, String lastname2, String user, String password,String email)
         {
             person.identification = identification;
             person.name1 = name1;
@@ -36,7 +37,8 @@ namespace EventosUniamazonia.Controllers
             person.lastname2 = lastname2;
             person.username = user;
             person.password = encrypt.encrypt(password);
-            answer = connect.insertData("INSERT INTO persona(cedula,primerNombre,segundoNombre,primerApellido,segundoApellido,usuario,passwordUser) values( '" + person.identification + "','" + person.name1 + "','" + person.name2 + "','" + person.lastname1 + "','" + person.lastname2 + "','" + person.username + "','" + person.password + "'); ");
+            person.email = email;
+            answer = connect.insertData("INSERT INTO persona(cedula,primerNombre,segundoNombre,primerApellido,segundoApellido,usuario,passwordUser,email) values( '" + person.identification + "','" + person.name1 + "','" + person.name2 + "','" + person.lastname1 + "','" + person.lastname2 + "','" + person.username + "','" + person.password + "','" + person.email + "'); ");
             if (answer == null)
             {
                 connect.insertData("INSERT INTO rolPersona (fkIdRol,fkCedulaPersona) Values('" + 2 + "','" + person.identification + "');");
@@ -51,9 +53,9 @@ namespace EventosUniamazonia.Controllers
         {
             person.username = username;
             person.password = encrypt.encrypt(password);
-            String query = @"select persona.cedula,persona.primerNombre,rolpersona.fkIdRol FROM persona 
-                            INNER JOIN rolpersona
-                            ON rolpersona.fkCedulaPersona=persona.cedula
+            String query = @"select persona.cedula,persona.primerNombre,rolpersona.fkIdRol,rol.Rol FROM persona 
+                            INNER JOIN rolpersona ON rolpersona.fkCedulaPersona=persona.cedula
+                            INNER JOIN rol ON rolpersona.fkIdRol=rol.idRol
                             where usuario='" + person.username + "'and passwordUser='" + person.password + "';";
 
             loginPerson = connect.QueryExecuteLogin(query);
@@ -65,11 +67,17 @@ namespace EventosUniamazonia.Controllers
             data = connect.executeConsult("Select primerNombre, segundoNombre, primerApellido,SegundoApellido,tema from persona where cedula like'" + cc + "';", CommandType.Text);
             return data;
         }
+        public DataTable searchInformationPerson(int cc)
+        {
+            data = connect.executeConsult("Select primerNombre, segundoNombre, primerApellido,SegundoApellido,tema,email from persona where cedula='" + cc + "';", CommandType.Text);
+            return data;
+        }
+
 
         public DataTable consultUsers()
         {
             data = connect.executeConsult(@" SELECT person.cedula,person.primerNombre,person.segundoNombre,
-                    person.primerApellido, person.segundoApellido,rol.Rol from persona as person
+                    person.primerApellido, person.segundoApellido,person.email,rol.Rol from persona as person
                     INNER JOIN rolpersona as rolP ON rolP.fkCedulaPersona=person.cedula
                     INNER JOIN rol ON rolP.fkIdRol=rol.idRol;", CommandType.Text);
             return data;
@@ -91,12 +99,12 @@ namespace EventosUniamazonia.Controllers
         }
 
 
-        public string modifyRol(int cedula, int idRol)
+        public int modifyRol(int cedula, int idRol)
         {
 
             person.identification = Convert.ToInt32(cedula);
-            answer = connect.insertData("UPDATE rolPersona SET fkIdRol = '" + idRol + "' WHERE fkCedulaPersona='" + person.identification + "' ");
-            return answer;
+            rowAfectadas = connect.updateData("UPDATE rolPersona SET fkIdRol = '" + idRol + "' WHERE fkCedulaPersona='" + person.identification + "' ");
+            return rowAfectadas;
         }
 
 

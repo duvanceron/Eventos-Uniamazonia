@@ -15,6 +15,8 @@ namespace EventosUniamazonia.Views.Person
         DataTable data;
         String nameFull;
         Validations validate;
+        String answer;
+        int rowAfectadas;
         public ConsultPersons()
         {
             person = new PersonController();
@@ -37,12 +39,29 @@ namespace EventosUniamazonia.Views.Person
         {
             if (isCorrectTheCedula())
             {
-                data = person.consultRolByPerson(Convert.ToInt32(cedula.Value));
-                nameFull = data.Rows[0][1].ToString() + " " + data.Rows[0][2].ToString() + " " + data.Rows[0][3].ToString() + " " + data.Rows[0][4].ToString(); ;
-                this.name.Value = nameFull.ToUpper();
-                this.rolActual.Value = data.Rows[0][5].ToString().ToUpper();
+                try
+                {
+                    data = person.consultRolByPerson(Convert.ToInt32(cedula.Value));
+                    if (data.Rows.Count >= 1)
+                    {
+                        nameFull = data.Rows[0][1].ToString() + " " + data.Rows[0][2].ToString() + " " + data.Rows[0][3].ToString() + " " + data.Rows[0][4].ToString(); ;
+                        this.name.Value = nameFull.ToUpper();
+                        this.rolActual.Value = data.Rows[0][5].ToString().ToUpper();
+                    }
+                    else
+                    {
+                        clearFields();
+
+                    }
+                }
+                catch
+                {
+                    clearFields();
+                    Response.Write("<script>alert('Numero de cedula incorrecta.')</script>");
+                }
             }
-            else {
+            else
+            {
                 Response.Write("<script>alert('Verificar los datos.')</script>");
             }
 
@@ -54,8 +73,18 @@ namespace EventosUniamazonia.Views.Person
 
                 if (isCorrectTheCedula())
                 {
-                    person.modifyRol(Convert.ToInt32(cedula.Value), Convert.ToInt32(listRoles.SelectedValue));
+
+                    rowAfectadas = person.modifyRol(Convert.ToInt32(cedula.Value), Convert.ToInt32(listRoles.SelectedValue));
                     clearFields();
+
+                    if (rowAfectadas >= 1)
+                    {
+                        Response.Write("<script>alert('Mofificación exitosa.')</script>");
+                    }
+                    else {
+                        Response.Write("<script>alert('Cedula incorrecta.')</script>");
+                    }
+
                 }
                 else
                 {

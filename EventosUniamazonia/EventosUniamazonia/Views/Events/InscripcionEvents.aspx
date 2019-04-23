@@ -25,9 +25,8 @@
                             <table id="bootstrap-data-table1s" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Evento</th>
-                                        <th>Director</th>
-                                        <th>Tema</th>
+                                        <th class="text-center">NOMBRE DEL EVENTO</th>
+                                        <th>FECHA INICIO          FIN EVENTO  </th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -36,8 +35,7 @@
                                         <ItemTemplate>
                                             <tr>
                                                 <td><%#Eval("Nombre")%> </td>
-                                                <td><%#Eval("Director")%> </td>
-                                                <td><%#Eval("Tema")%> </td>
+                                                <td><%#Eval("fecha")%> <%#Eval("fechaFin")%>  </td>
                                                 <td>
                                                     <asp:LinkButton runat="server" OnCommand="Unnamed_Command" CssClass="btn btn-success" CommandArgument='<%#Eval("idEvento")%>' CommandName="Registro">
                                                         Registrar
@@ -62,7 +60,7 @@
 
 
 
-    <script src="../../Means/assets/js/vendor/jquery-2.1.4.min.js"></script>
+   <%-- <script src="../../Means/assets/js/vendor/jquery-2.1.4.min.js"></script>--%>
     <script src="../../Means/assets/js/popper.min.js"></script>
     <script src="../../Means/assets/js/plugins.js"></script>
     <script src="../../Means/assets/js/main.js"></script>

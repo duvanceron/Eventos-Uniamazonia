@@ -18,26 +18,35 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Mis eventos.</strong>
-                            <asp:DropDownList ID="DropDownEvents" runat="server" class="designInput">
-                            </asp:DropDownList>
-                            <asp:Button ID="search" runat="server" Text="Consultar" />
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <strong class="card-title">Inscritos al evento.</strong>
+                                    <asp:DropDownList ID="DropDownEvents" runat="server" class="designInput">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:Button ID="search" runat="server" Text="Consultar" CssClass="btn btn-primary" OnClick="Search_Click" />
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="card-body">
                             <table id="bootstrap-data-table1s" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Evento</th>
+                                        <th class="text-center">CEDULA</th>
+                                        <th class="text-center">NOMBRE DEL PARTICIPANTE</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <asp:ListView runat="server" ID="listEvents">
                                         <ItemTemplate>
                                             <tr>
-                                                <td><%#Eval("primerNombre") %> <%#Eval("primerApellido") %> <%#Eval("SegundoApellido") %> </td>
-                                                <td><%#Eval("nombre") %> </td>
+                                                <td><%#Eval("cedula") %> </td>
+                                                <td><%#Eval("primerNombre") %> <%#Eval("segundoNombre") %>  <%#Eval("primerApellido") %> <%#Eval("SegundoApellido") %> </td>
+
                                             </tr>
                                         </ItemTemplate>
                                     </asp:ListView>
@@ -53,4 +62,31 @@
         </div>
 
     </div>
+
+
+    <%-- <script src="../../Means/assets/js/vendor/jquery-2.1.4.min.js"></script>--%>
+    <script src="../../Means/assets/js/popper.min.js"></script>
+    <script src="../../Means/assets/js/plugins.js"></script>
+    <script src="../../Means/assets/js/main.js"></script>
+
+    <script src="../../Means/assets/js/lib/data-table/datatables.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/jszip.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/pdfmake.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/vfs_fonts.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/buttons.print.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/datatables-init.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#bootstrap-data-table-export').DataTable();
+        });
+        $('#bootstrap-data-table1s').dataTable({
+            "ordering": false
+        });
+    </script>
 </asp:Content>

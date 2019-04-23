@@ -104,7 +104,7 @@
                                             <ItemTemplate>
                                                 <tr>
                                                     <td><%#Eval("cedula") %> </td>
-                                                    <td><%#Eval("primerNombre") %> <%#Eval("primerApellido") %> <%#Eval("SegundoApellido") %> </td>
+                                                    <td><%#Eval("primerNombre") %> <%#Eval("segundoNombre") %> <%#Eval("primerApellido") %> <%#Eval("SegundoApellido") %> </td>
                                                     <td><%#Eval("Rol") %> </td>
 
                                                 </tr>
@@ -126,7 +126,7 @@
     </div>
 
 
-    <script src="../../Means/assets/js/vendor/jquery-2.1.4.min.js"></script>
+<%--    <script src="../../Means/assets/js/vendor/jquery-2.1.4.min.js"></script>--%>
     <script src="../../Means/assets/js/popper.min.js"></script>
     <script src="../../Means/assets/js/plugins.js"></script>
     <script src="../../Means/assets/js/main.js"></script>

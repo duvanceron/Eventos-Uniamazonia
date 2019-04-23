@@ -57,7 +57,7 @@ namespace EventosUniamazonia.Views.Person
         {
             if (isCorrectAllTheFields()==true) {
                 try {
-                    answer=person.ModifyPerson(theme.Text, ccSpeaker.Text);
+                    answer=person.ModifyPerson(theme.Text.ToUpper(), ccSpeaker.Text);
                     if (answer == null)
                     {
                         Response.Write("<script>alert('Registro exitoso.')</script>");
@@ -89,7 +89,7 @@ namespace EventosUniamazonia.Views.Person
         }
 
         public Boolean isCorrectAllTheFields() {
-            if (validate.validateEmpty(ccSpeaker.Text) == true || validate.IsNumber(ccSpeaker.Text) == false || validate.validateEmpty(theme.Text)==true || validate.isLetter(theme.Text)==false) {
+            if (validate.validateEmpty(ccSpeaker.Text) == true || validate.IsNumber(ccSpeaker.Text) == false || validate.validateEmpty(theme.Text)==true) {
                 return false;
             }
             return true;

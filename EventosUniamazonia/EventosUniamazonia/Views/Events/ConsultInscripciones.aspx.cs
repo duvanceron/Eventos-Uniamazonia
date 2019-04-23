@@ -23,9 +23,15 @@ namespace EventosUniamazonia.Views.Events
                 DropDownEvents.DataTextField = ("nombre");
                 DropDownEvents.DataValueField = ("idEvento");
                 DropDownEvents.DataBind();
-                listEvents.DataSource = evento.consultPersonsByEvent(Convert.ToInt32("39"));
-                listEvents.DataBind();
+
             }
+
+        }
+
+        protected void Search_Click(object sender, EventArgs e)
+        {
+            listEvents.DataSource = evento.consultPersonsByEvent(Convert.ToInt32(DropDownEvents.SelectedValue));
+            listEvents.DataBind();
 
         }
     }

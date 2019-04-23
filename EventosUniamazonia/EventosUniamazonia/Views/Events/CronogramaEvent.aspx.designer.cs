@@ -13,15 +13,6 @@ namespace EventosUniamazonia.Views.Events {
     public partial class CronogramaEvent {
         
         /// <summary>
-        /// Control DropDownEvent.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownEvent;
-        
-        /// <summary>
         /// Control script.
         /// </summary>
         /// <remarks>
@@ -101,6 +92,15 @@ namespace EventosUniamazonia.Views.Events {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Save;
+        
+        /// <summary>
+        /// Control DropDownEvent.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownEvent;
         
         /// <summary>
         /// Control ListView1.

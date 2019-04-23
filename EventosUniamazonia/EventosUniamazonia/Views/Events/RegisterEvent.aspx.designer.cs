@@ -13,6 +13,15 @@ namespace EventosUniamazonia.Views.Events {
     public partial class RegisterEvent {
         
         /// <summary>
+        /// Control ImageEvent.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImageEvent;
+        
+        /// <summary>
         /// Control name.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,24 @@ namespace EventosUniamazonia.Views.Events {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDown1;
+        
+        /// <summary>
+        /// Control UploadImage.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload UploadImage;
+        
+        /// <summary>
+        /// Control sendImage.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button sendImage;
         
         /// <summary>
         /// Control script.

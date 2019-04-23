@@ -40,6 +40,7 @@ namespace EventosUniamazonia.Shared
             }
 
             labelUser.InnerHtml = Session["LoginUser"].ToString().ToUpper();
+            labelRol.InnerHtml = Session["nameRol"].ToString().ToUpper();
             person.loadMenu(Session["idRol"].ToString(), menu);
             String val = Session["idRol"].ToString();
 

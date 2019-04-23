@@ -6,8 +6,8 @@
     <title>Mis eventos.</title>
     <meta name="description" content="Mis eventos" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="../../Means/css/styleGlobal.css" />
-    <link rel="stylesheet" href="../../Means/fonts/style.css" />
+    <%--<link rel="stylesheet" href="../../Means/css/styleGlobal.css" />
+    <link rel="stylesheet" href="../../Means/fonts/style.css" />--%>
     <link rel="stylesheet" href="../Means/assets/css/lib/datatable/dataTables.bootstrap.min.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -26,8 +26,9 @@
                             <table id="bootstrap-data-table1s" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Evento</th>
+                                        <th>NOMBRE DEL EVENTO</th>
+                                        <th>FECHA INICIO FECHA FIN  </th>
+                                        <th>  </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -35,8 +36,10 @@
                                         <ItemTemplate>
                                             <tr>
 
-                                                <td><%#Eval("primerNombre") %> <%#Eval("primerApellido") %> <%#Eval("SegundoApellido") %> </td>
-                                                <td><%#Eval("nombre") %> </td>
+                                                <td><%#Eval("nombre") %></td>
+                                                <td><%#Eval("fecha") %>
+                                                    <br>
+                                                    <%#Eval("fechaFin") %> </td>
                                                 <td>
                                                     <asp:LinkButton runat="server" OnCommand="Unnamed_Command" CssClass="btn btn-danger" CommandArgument='<%#Eval("idEvento")%>' CommandName="Remove">
                                                         Eliminar
@@ -58,4 +61,32 @@
         </div>
 
     </div>
+
+<%--    
+    <script src="../../Means/assets/js/vendor/jquery-2.1.4.min.js"></script>--%>
+    <script src="../../Means/assets/js/popper.min.js"></script>
+    <script src="../../Means/assets/js/plugins.js"></script>
+    <script src="../../Means/assets/js/main.js"></script>
+
+    <script src="../../Means/assets/js/lib/data-table/datatables.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/jszip.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/pdfmake.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/vfs_fonts.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/buttons.print.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="../../Means/assets/js/lib/data-table/datatables-init.js"></script>
+
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#bootstrap-data-table-export').DataTable();
+        });
+        $('#bootstrap-data-table1s').dataTable({
+            "ordering": false
+        });
+    </script>
 </asp:Content>

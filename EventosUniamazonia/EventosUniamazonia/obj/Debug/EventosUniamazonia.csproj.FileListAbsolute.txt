@@ -67,7 +67,6 @@ c:\users\duvan\documents\visual studio 2015\Projects\EventosUniamazonia\EventosU
 c:\users\duvan\documents\visual studio 2015\Projects\EventosUniamazonia\EventosUniamazonia\obj\Debug\EventosUniamazonia.pdb
 c:\users\duvan\documents\visual studio 2015\Projects\EventosUniamazonia\EventosUniamazonia\bin\MySql.Data.dll
 c:\users\duvan\documents\visual studio 2015\Projects\EventosUniamazonia\EventosUniamazonia\bin\MySql.Data.xml
-C:\Users\duvan\documents\visual studio 2015\Projects\EventosUniamazonia\EventosUniamazonia\obj\Debug\EventosUniamazonia.csprojResolveAssemblyReference.cache
 C:\Users\duvan\documents\visual studio 2015\Projects\EventosUniamazonia\EventosUniamazonia\bin\CrystalDecisions.CrystalReports.Engine.dll
 C:\Users\duvan\documents\visual studio 2015\Projects\EventosUniamazonia\EventosUniamazonia\bin\CrystalDecisions.ReportSource.dll
 C:\Users\duvan\documents\visual studio 2015\Projects\EventosUniamazonia\EventosUniamazonia\bin\CrystalDecisions.Shared.dll
@@ -84,3 +83,5 @@ C:\Users\duvan\documents\visual studio 2015\Projects\EventosUniamazonia\EventosU
 C:\Users\duvan\documents\visual studio 2015\Projects\EventosUniamazonia\EventosUniamazonia\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
 C:\Users\duvan\documents\visual studio 2015\Projects\EventosUniamazonia\EventosUniamazonia\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
 C:\Users\duvan\documents\visual studio 2015\Projects\EventosUniamazonia\EventosUniamazonia\bin\stdole.dll
+C:\Users\duvan\documents\visual studio 2015\Projects\EventosUniamazonia\EventosUniamazonia\bin\CrystalDecisions.Web.dll
+C:\Users\duvan\documents\visual studio 2015\Projects\EventosUniamazonia\EventosUniamazonia\obj\Debug\EventosUniamazonia.csprojResolveAssemblyReference.cache

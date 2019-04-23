@@ -17,6 +17,7 @@ namespace EventosUniamazonia.Conexion
         public String answer;
         public DataTable data;
         public MySqlDataAdapter mysqlAdap;
+        int rowafectadas;
         public Connection()
         {
             strConn = ConfigurationManager.ConnectionStrings["connectionMysql"].ConnectionString;
@@ -119,6 +120,75 @@ namespace EventosUniamazonia.Conexion
             adaptador.Fill(resultado);
 
             return resultado.Tables[0];
+        }
+
+
+        public String RemoveData(String Query)
+        {
+            if (openConnection())
+            {
+                try
+                {
+                    cmd.Connection = connect;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = Query;
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        closeConnection();
+                    }
+                    catch
+                    {
+                        answer = "Error en la ejecucion de la consulta";
+                    }
+                }
+                catch
+                {
+                    answer = "error en la consulta";
+                }
+            }
+            else
+            {
+                answer = "Error en la conexion";
+
+            }
+            return answer;
+        }
+
+
+
+        public int updateData(String Query)
+        {
+            if (openConnection())
+            {
+                try
+                {
+                    cmd.Connection = connect;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = Query;
+
+                    try
+                    {
+                        rowafectadas= cmd.ExecuteNonQuery();
+                        closeConnection();
+                    }
+                    catch
+                    {
+                        answer = "Error en la ejecucion de la consulta";
+                    }
+                }
+                catch
+                {
+                    answer = "error en la consulta";
+                }
+            }
+            else
+            {
+                answer = "Error en la conexion";
+
+            }
+            return rowafectadas;
         }
 
 

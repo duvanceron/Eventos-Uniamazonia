@@ -22,17 +22,20 @@ namespace EventosUniamazonia.Views.Person
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session.RemoveAll();
             Session.Remove("LoginUser");
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             information = personC.logear(this.TextUser.Text, this.TextPassword.Text);
+
             if (information.Rows.Count >= 1)
             {
 
                 Session["LoginUser"] = information.Rows[0][1].ToString();//a la sesion llamada Login le corresponde el valor de ese textBox, si la sesion no existe la crea, sino la remplaza
                 Session["idRol"] = information.Rows[0][0].ToString();
+                Session["nameRol"]= information.Rows[0][3].ToString();
                 String val = Session["idRol"].ToString();
 
                 Response.Redirect("../../Views/Home/Index.aspx");

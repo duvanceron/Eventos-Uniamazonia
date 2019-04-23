@@ -11,8 +11,7 @@
 
             <div class="container-form">
 
-
-                <button type="button" class="btn btn-primary pull-right rounded" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Solicitar recurso.</button>
+                <asp:Image ID="ImageEvent" CssClass="pull-right rounded" runat="server" Width="50px" Height="60px" ImageUrl="~/Means/images/user.png" />
 
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -39,7 +38,7 @@
                     </div>
                 </div>
 
-                <h2 style="color: #C7DBD0; text-align: center; padding-bottom: 4px;">Registrar evento.</h2>
+                <h2 style="color: #248461; text-align: center; padding-bottom: 4px;">Registrar evento.</h2>
                 <div class="form" id="formRegisterID">
                     <div class="col-sm-6" id="primerRegistro">
                         <div class="input-group">
@@ -91,11 +90,15 @@
                                     </asp:DropDownList> -->
 
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalCenter">
                                         Seleccionar sitio
                                     </button>
 
+                                    <button type="button" class="btn btn-primary pull-right rounded" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Solicitar recurso.</button>
+                                    <asp:FileUpload ID="UploadImage" runat="server" Style="visibility: hidden" />
+                                    <asp:Button ID="sendImage" runat="server" Style="visibility: hidden" Text="Button" OnClick="Upload_Clik"/>
                                     <!-- Modal -->
+                                    
                                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
@@ -161,6 +164,27 @@
 
 
     </section>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#<%=ImageEvent.ClientID%>').click(function () {
+                $('#<%=UploadImage.ClientID%>').click();
+
+            });
+        });
+
+        $('#<%=UploadImage.ClientID%>').change(
+           function () {
+               $('#<%=sendImage.ClientID%>').click();
+
+           });
+
+    </script>
+
+
 
 </asp:Content>
 

@@ -11,17 +11,7 @@
     <link rel="stylesheet" href="../Means/assets/css/lib/datatable/dataTables.bootstrap.min.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="containerUno">
-
-        <%--<label for="Event" class="labelDesign"><span class="icon-user"></span>Evento: </label>--%>
-        <asp:DropDownList ID="DropDownEvent" runat="server" class="designInput">
-        </asp:DropDownList>
-
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-            Registrar Actividad.
-        </button>
-
+    <div class="content mt-3">
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -39,25 +29,19 @@
                                 <fieldset>
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <input type="text" id="cedula" name="cedula" class="designInput" runat="server" />
+                                            <input type="text" id="cedula" name="cedula" class="designInput" runat="server" placeholder="Ingrese la cedula" />
                                         </div>
 
                                         <div class="col-md-3 " id="bttnAddRemove">
 
                                             <asp:Button ID="Search" runat="server" Text="Buscar" CssClass="designButtonSmall" OnClick="Search_Click" />
-                                            <%-- <asp:Button ID="Add" runat="server" Text="Agregar" CssClass="designButtonSmall" />--%>
+
                                         </div>
                                     </div>
-                                    <%--<div class="row">
-                                        <div class="col-md-8 ">
-                                            <asp:ListBox ID="ListSites" runat="server" class="ListSites"></asp:ListBox>
-                                        </div>
 
-                                    </div>--%>
                                     <div class="row">
                                         <div class="col-md-8 ">
-                                            <%-- <asp:DropDownList ID="DropDown" runat="server" class="designInput">
-                                            </asp:DropDownList>--%>
+
                                             <input type="text" id="name" name="name" class="designInput" runat="server" placeholder="Nombre del ponente" />
 
                                         </div>
@@ -91,28 +75,70 @@
             </div>
         </div>
 
-        <table id="bootstrap-data-table1s" class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Evento</th>
-                    <th>Nombre</th>
-                    <th>Tipo actividad</th>
-                    <th>Fecha/Hora</th>
-                </tr>
-            </thead>
-            <tbody>
-                <asp:ListView runat="server" ID="ListView1">
-                    <ItemTemplate>
-                        <tr>
-                            <td><%#Eval("Nombre")%> </td>
-                            <td><%#Eval("primerNombre") %> <%#Eval("primerApellido") %> <%#Eval("SegundoApellido") %></td>
-                            <td><%#Eval("tipo actividad")%> </td>
-                            <td><%#Eval("horaFecha")%> </td>
-                        </tr>
-                    </ItemTemplate>
-                </asp:ListView>
 
-            </tbody>
-        </table>
+        <div class="animated fadeIn">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <strong class="card-title">Mis eventos.</strong>
+                                    <asp:DropDownList ID="DropDownEvent" runat="server" class="designInput">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-md-3">
+                                    <!-- Button trigger modal -->
+                                    <div style="margin-bottom: 5px;">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                            Registrar Actividad.
+                                        </button>
+                                    </div>
+                                    <div style="margin-bottom: 5px;">
+                                        <button runat="server" type="button" class="btn btn-primary" onserverclick="Search_Cronogram">
+                                            Consultar Cronograma 
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="card-body">
+                            <table id="bootstrap-data-table1s" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Evento</th>
+                                        <th>Nombre</th>
+                                        <th>Tipo actividad</th>
+                                        <th>Fecha/Hora</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <asp:ListView runat="server" ID="ListView1">
+                                        <ItemTemplate>
+                                            <tr>
+
+                                                <td><%#Eval("tema")%> </td>
+                                                <td><%#Eval("primerNombre") %> <%#Eval("primerApellido") %> <%#Eval("SegundoApellido") %></td>
+                                                <td><%#Eval("tipo actividad")%> </td>
+                                                <td><%#Eval("horaFecha")%>   <%#Eval("horaFechaFin")%></td>
+                                            </tr>
+                                        </ItemTemplate>
+                                    </asp:ListView>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
     </div>
+
 </asp:Content>

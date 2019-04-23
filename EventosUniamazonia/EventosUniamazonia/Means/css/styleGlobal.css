@@ -31,6 +31,13 @@ body{
 	box-shadow: inset 0 0 5px grey;
 	width: 100%;
 }
+.container-form2{
+    margin:auto;
+	padding: 50px;
+	color: #CFCFCF;
+	background: #f7f7f7;
+	width: 100%;
+}
 .form{
 	width: 100%;
 }
@@ -172,4 +179,7 @@ input[type="submit"]:hover{
     align-content:center;
     width: 90%;
     transition: all .3s ease;
+}
+.txtArea{
+    height:150px;
 }

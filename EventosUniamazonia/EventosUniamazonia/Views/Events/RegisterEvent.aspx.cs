@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using EventosUniamazonia.Controllers;
+using System.IO;
 
 namespace EventosUniamazonia.Views.Events
 {
@@ -15,6 +16,8 @@ namespace EventosUniamazonia.Views.Events
         public Validations vdte;
         public SiteController site;
         Dictionary<int, string> sitesDic;
+        String binder, extension, file;
+        String binderFinally;
         public RegisterEvent()
         {
             NewEvent = new EventController();
@@ -25,9 +28,10 @@ namespace EventosUniamazonia.Views.Events
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            binder = Path.Combine(Request.PhysicalApplicationPath, "Upload");//Consigue la ruta de la carpeta Upload
             if (!IsPostBack)
             {
-                 getCities();
+                getCities();
 
             }
         }
@@ -36,18 +40,19 @@ namespace EventosUniamazonia.Views.Events
         {
             int valor;
             String text;
-           // IsEmptyCombo();
-            foreach (ListItem valueItem in ListSites.Items) {
-                valor= Convert.ToInt32(valueItem.Value);
+            // IsEmptyCombo();
+            foreach (ListItem valueItem in ListSites.Items)
+            {
+                valor = Convert.ToInt32(valueItem.Value);
                 text = valueItem.Text;
-                sitesDic.Add(valor,text);
+                sitesDic.Add(valor, text);
             }
-            
-          
+
+
             if (isCorrectData())
             {
-                answer = NewEvent.addEvent(name.Value, schedule.Value, date.Value, dateEnd.Value, director.Value, theme.Value,sitesDic, Session["LoginUser"].ToString());
-         
+                answer = NewEvent.addEvent(name.Value, schedule.Value, date.Value, dateEnd.Value, director.Value, theme.Value, sitesDic, Session["nameFile"].ToString());
+
                 if (answer != null)
                 {
                     //ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", "<script>alert('Error en la consulta " + result + ".')</script>", false);
@@ -72,19 +77,61 @@ namespace EventosUniamazonia.Views.Events
         }
         protected void Add_Click(object sender, EventArgs e)
         {
-           int value= Convert.ToInt32(DropDown.SelectedValue);
-            String text=DropDown.SelectedItem.ToString();
-            
-            ListSites.Items.Add(new ListItem(text, ""+value));
-        
+            int value = Convert.ToInt32(DropDown.SelectedValue);
+            String text = DropDown.SelectedItem.ToString();
+
+            ListSites.Items.Add(new ListItem(text, "" + value));
+
             sitesDic.Add(value, text);
 
         }
 
-        protected void Remove_Click(object sender, EventArgs e) {
-            int value= Convert.ToInt32(DropDown.SelectedValue);
+        protected void Remove_Click(object sender, EventArgs e)
+        {
+            int value = Convert.ToInt32(DropDown.SelectedValue);
             sitesDic.Remove(value);
             ListSites.Items.Remove(ListSites.SelectedItem);
+        }
+        protected void Upload_Clik(object sender, EventArgs e)
+        {
+            if (UploadImage.PostedFile.FileName == "")
+            {//verificar si se subio un archivo
+                Response.Write("<script>alert('ningún archivo seleccionado')</script>");
+            }
+            else
+            {
+                extension = Path.GetExtension(UploadImage.PostedFile.FileName);//conseguir la extensión del archivo
+                switch (extension.ToLower())
+                {
+                    case ".jpg":
+                        break;
+                    case ".gif":
+                        break;
+                    case ".png":
+                        break;
+                    default:
+                        Response.Write("<script>alert('Extension no valida')</script>");
+                        return;
+
+                }
+                try
+                {
+                    //copiar el archivo a la carpeta uplias
+                    file = Path.GetFileName(UploadImage.PostedFile.FileName);
+                    Session["nameFile"] = file;
+                    //binderFinally = Path.Combine(binder,file);
+                    UploadImage.SaveAs(Server.MapPath("~/Upload/") + file);
+                    //UploadImage.PostedFile.SaveAs(binderFinally);
+                    ImageEvent.ImageUrl = "~/Upload/" + file;
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>alert('" + ex.Message + "')</script>");
+
+                }
+            }
+
+
         }
 
 
@@ -95,7 +142,7 @@ namespace EventosUniamazonia.Views.Events
 
         public Boolean isCorrectData()
         {
-            if (vdte.validateEmpty(name.Value) == true || vdte.validateEmpty(schedule.Value) == true || vdte.validateEmpty(director.Value) == true || vdte.validateEmpty(theme.Value) == true || vdte.validateEmpty(date.Value) == true
+            if (vdte.validateEmpty(name.Value) == true || vdte.validateEmpty(date.Value) == true
                 )
             {
                 return false;
@@ -136,10 +183,10 @@ namespace EventosUniamazonia.Views.Events
         protected void Save_Click(object sender, EventArgs e)
         {
 
-         
+
 
         }
 
-       
+
     }
 }

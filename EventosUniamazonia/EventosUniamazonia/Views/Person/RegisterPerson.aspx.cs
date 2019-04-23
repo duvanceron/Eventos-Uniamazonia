@@ -14,10 +14,13 @@ namespace EventosUniamazonia.Views.Person
         PersonController personC;
         String result;
         Regex regLetter;
+        emailAplication email;
         public RegisterPerson()
         {
             regLetter = new Regex("^[A-Z & a-z]*$");
             personC = new PersonController();
+            email = new emailAplication();
+
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,17 +31,26 @@ namespace EventosUniamazonia.Views.Person
         {
             if (isCorrectData())
             {
-                result = personC.addPerson(Convert.ToInt32(this.cc.Text), this.name.Text.ToUpper(), this.name2.Text.ToUpper(), this.lastName.Text.ToUpper(), this.lastName2.Text.ToUpper(), this.user.Text, this.password.Text);
-
-                if (result != null)
+                if (email.IsCorrectEmail(emailPerson.Text.ToString(), "Registro", "Usted se ha registrado en Eventos Uniamazonia, Gracias por hacer parte de la comunidad"))
                 {
-                    //ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", "<script>alert('Error en la consulta " + result + ".')</script>", false);
-                    Response.Write("<script>alert(' " + result + ".')</script>");
-                    emptyFields();
+                    result = personC.addPerson(Convert.ToInt32(this.cc.Text), this.name.Text.ToUpper(), this.name2.Text.ToUpper(), this.lastName.Text.ToUpper(), this.lastName2.Text.ToUpper(), this.user.Text, this.password.Text,this.emailPerson.Text);
+
+                    if (result != null)
+                    {
+                        //ScriptManager.RegisterStartupScript(this, typeof(Page), "alerta", "<script>alert('Error en la consulta " + result + ".')</script>", false);
+                        Response.Write("<script>alert(' " + result + ".')</script>");
+                        emptyFields();
+                    }
+                    else
+                    {
+                        Response.Redirect("../Person/Login.aspx");
+
+                    }
                 }
                 else
                 {
-                    Response.Redirect("../Person/Login.aspx");
+                    Response.Write("<script>alert('Correo electronico invalido')</script>");
+                    emptyFields();
 
                 }
 
